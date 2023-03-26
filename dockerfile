@@ -12,7 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM arm64v8/golang
+ARG DOCKERIMAGE
+FROM ${DOCKERIMAGE}
+
 
 
 COPY log-generator /
