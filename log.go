@@ -11,6 +11,13 @@ import (
 
 var (
 	httpMethods = []string{
+		"POST",
+		"GET",
+		"CONNECT",
+		"DELETE",
+		"HEAD",
+	}
+	loglevel = []string{
 		"info",
 		"error",
 		"warning",
@@ -63,12 +70,13 @@ func generateLogs(linesTotal int, duration time.Duration) {
 
 // Generates apiserver-like line with average length of 100 symbols
 func generateLogLine(id int) string {
+	level := loglevel[rand.Intn(len(loglevel))]
 	method := httpMethods[rand.Intn(len(httpMethods))]
 	namespace := namespaces[rand.Intn(len(namespaces))]
 
 	podName := rand.String(rand.IntnRange(3, 5))
-	url := fmt.Sprintf("/api/v1/namespaces/%s/pods/%s", namespace, podName)
+	url := fmt.Sprintf("A message log that is quite long and happens in the fake namespace %s and fake pod %s. I'm going to keep going and add some special char {[ ]} $! ** ,; to the mix for more funnè results", namespace, podName)
 	status := rand.IntnRange(200, 600)
 
-	return fmt.Sprintf("%d %s %s %d", id, method, url, status)
+	return fmt.Sprintf("%d %s %s %s %d", id, level, method, url, status)
 }
