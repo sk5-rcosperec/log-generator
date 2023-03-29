@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: random-logger-deployment
+  labels:
+    app: random-logger
+spec:
+  replicas: 20
+  selector:
+    matchLabels:
+      app: random-logger
+  template:
+    metadata:
+      labels:
+        app: random-logger
+    spec:
+      containers:
+      - name: random-logger
+        resources: 
+          limits:
+            memory: 32Mi
+          requests:
+            memory: 32Mi
+            cpu: "10m"
+        image: ghcr.io/sk5-rcosperec/log-generator:v0.33
+        env:
+          - name: LOGS_GENERATOR_LINES_TOTAL
+            value: "10000"
+          - name: LOGS_GENERATOR_DURATION
+            value: "5m"
+          - name: LOGS_GENERATOR_MODE
+            value: "json"
