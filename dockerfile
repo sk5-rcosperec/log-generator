@@ -12,13 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ARG DOCKERIMAGE
-FROM ${DOCKERIMAGE}
+
+FROM --platform=${TARGETPLATFORM} golang
+ARG TARGETPLATFORM
 
 
-
-COPY log-generator /
+COPY ${TARGETPLATFORM}/log-generator /log-generator
 
 CMD /log-generator --logtostderr \
   --log-lines-total=${LOGS_GENERATOR_LINES_TOTAL} \
-  --run-duration=${LOGS_GENERATOR_DURATION}
+  --run-duration=${LOGS_GENERATOR_DURATION} \
+  --mode=${LOGS_GENERATOR_MODE}

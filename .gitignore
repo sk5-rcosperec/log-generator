@@ -1,2 +1,5 @@
 mymakefile.mk
 log-generator
+go.sum
+go.work.sum
+go.work
