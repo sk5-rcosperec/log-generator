@@ -1,4 +1,4 @@
-TAG = v0.30
+TAG = v0.32
 PREFIX = ghcr.io/sk5-rcosperec/
 
 build-local:
@@ -12,7 +12,7 @@ build-amd64:
 
 build-arm64:
 	export GOARCH=arm64
-	go build -o linux/arm64/v8/log-generator .
+	go build -o linux/arm64/log-generator .
 
 build-and-push-amd64: build-amd64
 	docker buildx build --platform linux/amd64 -t $(PREFIX)log-generator:latest-amd64 -t $(PREFIX)log-generator:$(TAG) . --push
