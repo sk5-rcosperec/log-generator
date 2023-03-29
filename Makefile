@@ -1,4 +1,4 @@
-TAG = v0.32
+TAG = v0.33
 PREFIX = ghcr.io/sk5-rcosperec/
 
 build-local:

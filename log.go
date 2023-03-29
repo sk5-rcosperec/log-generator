@@ -59,7 +59,7 @@ func main() {
 	if *duration <= 0 {
 		glog.Fatalf("Invalid duration: %v", *duration)
 	}
-	fmt.Println(*mode)
+
 	if *mode == "json" {
 		generateJsons(*linesTotal, *duration)
 	} else if *mode == "legacy" {
